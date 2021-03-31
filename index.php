@@ -55,7 +55,7 @@
         $sortby= 'price';
     }
 
-    if($action = false || $action <> 'register'){
+    if($action = false){
         if(!$makeID && !$typesID && !$classesID){
             $inventory = get_inventory($sortby);
         }
@@ -75,7 +75,7 @@
     
         include('view/inventory.php');
     }
-    elseif($action == 'register'){
+    elseif($_GET[action] == 'register'){
         include('view/register.php');
     }
     else{
