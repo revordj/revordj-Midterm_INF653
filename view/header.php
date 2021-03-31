@@ -18,7 +18,7 @@
             <a href='index.php?action=register'>Register</a>
         </section>
         <?php 
-        if ($action == 'register'){ ?>
+        if($_GET['action'] != 'register'){ ?>
             <section id='dropdown_forms' class='dropdown_forms'>
             <form action="." method="get" id="list__header_select" class="list__header_select">
                 <select name="makeID">
@@ -69,5 +69,5 @@
                 </section>
             
             </form>
-        <?php }  else { echo($action); }?>
+        <?php } ?>
        
