@@ -10,7 +10,7 @@
     require('model/vehtype.php');
     require('model/vehmake_db.php');
     
-
+    $action=false;
 
     if(isset($_GET['action'])){
         $action = $_GET['action'];
@@ -55,7 +55,7 @@
         $sortby= 'price';
     }
 
-    if($action = false){
+    if($action = false || $action <> 'register'){
         if(!$makeID && !$typesID && !$classesID){
             $inventory = get_inventory($sortby);
         }
@@ -75,9 +75,6 @@
     
         include('view/inventory.php');
     }
-    elseif($_GET['action'] == 'register'){
-        include('view/register.php');
-    }
     else{
-        include('view/logout.php');
+        include('view/register.php');
     }
