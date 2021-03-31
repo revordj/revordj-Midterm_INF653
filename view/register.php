@@ -6,6 +6,7 @@ $actionlocal = $_GET['action'];
 </br>
 Please enter your firstname:
 </br>
+Welcome <?php $_SESSION['userid']; ?>
 <form action="." method="get" id="list__header_select" class="list__header_select">
 	<input type="hidden" name="action" value="register"> 
 	<label for='newclass'>Name: </label>
