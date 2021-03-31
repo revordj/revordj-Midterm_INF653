@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/public.css" />
     <title>Zippy's Used Autos</title>
+        <section id='logon'>
+            <a href='index.php?action=register'>Register</a>
+        </section>
 </head>
 <body>
     <main class="main">
