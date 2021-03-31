@@ -56,7 +56,15 @@
         $sortby= 'price';
     }
 
-    if($action = false || $action <> 'register'){
+    if($action = 'register'){
+        include('view/register.php');
+    }
+
+    elseif($action = 'logout'){
+        include('view/logout.php');
+    }
+
+    else{
         if(!$makeID && !$typesID && !$classesID){
             $inventory = get_inventory($sortby);
         }
@@ -76,6 +84,4 @@
     
         include('view/inventory.php');
     }
-    else{
-        include('view/register.php');
-    }
+   
