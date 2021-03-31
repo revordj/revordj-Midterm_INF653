@@ -12,10 +12,11 @@
     <main class="main">
         <section id='headerContent' class='headerContent'>
             <p class='title' id='title'> Zippy Used Autos </p>
-            <hr>
+            
         </section>
         <section id='logon'>
             <a href='index.php?action=register'>Register</a>
+            <hr>
         </section>
         <?php 
         if($_GET['action'] != 'register'){ ?>
