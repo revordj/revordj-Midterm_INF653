@@ -17,6 +17,14 @@
         $action = false;
     }
 
+    if(isset($_GET['firstname'])){
+        $firstname = $_GET['firstname'];
+        $_SESSION['userid'] = $firstname;
+    }
+    else{
+        $firstname = false;
+    }
+
     if(isset($_GET['makeID'])){
         $makeID = $_GET['makeID'];
     }
