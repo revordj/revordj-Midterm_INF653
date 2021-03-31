@@ -1,14 +1,17 @@
 <?php
+
+    //Start session management with a persistant cookie
+    $lifetime = 60 * 60 * 24 * 14; //2 weeks ttl
+    session_set_cookie_params($lifetime, '/');
+    session_start();
+
     require('model/vehclass_db.php');
     require('model/vehinventory_db.php');
     require('model/database.php');
     require('model/vehtype.php');
     require('model/vehmake_db.php');
     
-    //Start session management with a persistant cookie
-    $lifetime = 60 * 60 * 24 * 14; //2 weeks ttl
-    session_set_cookie_params($lifetime, '/');
-    session_start();
+
 
     if(isset($_GET['action'])){
         $action = $_GET['action'];
