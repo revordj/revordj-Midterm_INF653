@@ -4,7 +4,6 @@
     $lifetime = 60 * 60 * 24 * 14; //2 weeks ttl
     session_set_cookie_params($lifetime, '/');
     session_start();
-
     require('model/vehclass_db.php');
     require('model/vehinventory_db.php');
     require('model/database.php');
@@ -56,15 +55,7 @@
         $sortby= 'price';
     }
 
-    if($action = 'register'){
-        include('view/register.php');
-    }
-
-    elseif($action = 'logout'){
-        include('view/logout.php');
-    }
-
-    else{
+    if($action = false || $action <> 'register'){
         if(!$makeID && !$typesID && !$classesID){
             $inventory = get_inventory($sortby);
         }
@@ -84,4 +75,9 @@
     
         include('view/inventory.php');
     }
-   
+    elseif($action == 'register'){
+        include('view/register.php');
+    }
+    else{
+        include('view/logout.php');
+    }
