@@ -45,21 +45,26 @@
         $sortby= 'price';
     }
 
-    if(!$makeID && !$typesID && !$classesID){
-        $inventory = get_inventory($sortby);
-    }
-    elseif($makeID <> 0){
-        $inventory = get_inventory_by_make($makeID, $sortby);
-    }
-    elseif($typesID <> 0){
-        $inventory = get_inventory_by_type($typesID, $sortby);
-    }
-    elseif($classesID <> 0){
-        $inventory = get_inventory_by_classes($classesID, $sortby);
+    if($action = false || $action <> 'register'){
+        if(!$makeID && !$typesID && !$classesID){
+            $inventory = get_inventory($sortby);
+        }
+        elseif($makeID <> 0){
+            $inventory = get_inventory_by_make($makeID, $sortby);
+        }
+        elseif($typesID <> 0){
+            $inventory = get_inventory_by_type($typesID, $sortby);
+        }
+        elseif($classesID <> 0){
+            $inventory = get_inventory_by_classes($classesID, $sortby);
+        }
+        else{
+            echo("Error in search contents, please reload the page.");
+        }
+    
+    
+        include('view/inventory.php');
     }
     else{
-        echo("Error in search contents, please reload the page.");
+        include('view/register.php');
     }
-    
-    
-    include('view/inventory.php');
