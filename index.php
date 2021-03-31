@@ -6,9 +6,9 @@
     require('model/vehmake_db.php');
     
     //Start session management with a persistant cookie
-    $lifetime = 60 * 60 * 24 * 14; //2 weeks ttl
-    session_set_cookie_param($lifetime, '/');
-    session_start();
+    //$lifetime = 60 * 60 * 24 * 14; //2 weeks ttl
+    //session_set_cookie_param($lifetime, '/');
+    //session_start();
 
     if(isset($_GET['action'])){
         $action = $_GET['action'];
