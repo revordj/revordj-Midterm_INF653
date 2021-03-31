@@ -69,5 +69,5 @@
                 </section>
             
             </form>
-        <?php }  ?>
+        <?php }  else { echo($action); }?>
        
