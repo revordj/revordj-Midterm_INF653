@@ -4,8 +4,7 @@ $testing = 'This is the test value';
 $actionlocal = $_GET['action'];
 ?>
 </br>
-<?php 
-if(isset($_SESSION['userid'])); ?>
+<?php if(isset($_SESSION['userid'])) ?>
 <section name='login_logout' id='login_logout'>
 <p name='msg' id='msg'> Thank you for registering, <?php echo($_SESSION['userid']) ?>! </p>
 <p> <a href='index.php'> Click Here </a> to view our vehicle list. </a>
