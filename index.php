@@ -75,7 +75,7 @@
     
         include('view/inventory.php');
     }
-    elseif($action === "register") {
+    elseif($_GET['action'] == 'register') {
         include('view/register.php');
     }
 
