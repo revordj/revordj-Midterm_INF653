@@ -80,5 +80,5 @@
     }
 
     else{
-        include('view/logoff.php');
+        include('view/logout.php');
     }
