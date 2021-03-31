@@ -19,7 +19,7 @@
         if(!(isset($_GET['firstname']))){ ?>
             <a href='index.php?action=register'>Register</a>
          <?php } else { ?>
-         First name is set
+         Welcome <?php $_SESSION['userid']; ?>!
          <?php } ?>
             <hr>
         </section>
