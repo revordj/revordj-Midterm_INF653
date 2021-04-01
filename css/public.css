@@ -7,6 +7,9 @@
     font-weight: bold;
 }
 
+.logon{
+    text-align: right;
+}
 .login_logout{
     font-size: larger;
     font-weight: bold;

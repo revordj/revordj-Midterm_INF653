@@ -14,7 +14,7 @@
             <p class='title' id='title'> Zippy Used Autos </p>
             
         </section>
-        <section id='logon'>
+        <section id='logon' class='logon' name='logon'>
         <?php 
         if(!(isset($_GET['firstname'])) && !(isset($_SESSION['userid']))){ ?>
             <a href='index.php?action=register'>Register</a>
