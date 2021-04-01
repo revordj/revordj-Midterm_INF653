@@ -16,5 +16,5 @@
 	$secure = $params['secure'];
 	$httponly = $params['httponly'];
 	setcookie($name, '', $expire, $path, $domain, $secure, $httponly);
-
+?>
 <?php include('view/footer.php') ?>
