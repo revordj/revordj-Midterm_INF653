@@ -1,5 +1,5 @@
 <?php include('view/header.php') ?>
-	<section name='login_logout' id='login_logout'>
+	<section name='login_logout' id='login_logout' class='login_logout'>
 		<p name='msg' id='msg'> Thank you for logging out, <?php echo($_SESSION['userid']) ?>! </p>
 		<p> <a href='index.php'> Click Here </a> to view our vehicle list. </a>
 </section>
