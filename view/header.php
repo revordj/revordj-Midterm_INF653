@@ -27,7 +27,7 @@
             <hr>
         </section>
         <?php 
-        if($_GET['action'] != 'register'){ ?>
+        if($_GET['action'] != 'register' && $_GET['action'] != 'logout'){ ?>
             <section id='dropdown_forms' class='dropdown_forms'>
             <form action="." method="get" id="list__header_select" class="list__header_select">
                 <select name="makeID">
