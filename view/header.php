@@ -18,6 +18,9 @@
         <?php 
         if(!(isset($_GET['firstname'])) && !(isset($_SESSION['userid']))){ ?>
             <a href='index.php?action=register'>Register</a>
+         <?php  
+         } elseif($_GET['action'] == 'logout') { ?>
+
          <?php } else { ?>
          Welcome <?php echo($_SESSION['userid']); ?>! (<a href='index.php?action=logout'> Sign Out </a>)
          <?php } ?>

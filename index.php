@@ -54,7 +54,7 @@
     else{
         $sortby= 'price';
     }
-    echo($action);
+    //echo($action);
     if($action == false ){
         if(!$makeID && !$typesID && !$classesID){
             $inventory = get_inventory($sortby);
