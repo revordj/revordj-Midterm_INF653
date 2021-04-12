@@ -4,7 +4,18 @@
     require('model/database.php');
     require('model/vehtype.php');
     require('model/vehmake_db.php');
+    require('model/admin_db.php');
     
+    if(isset($_POST['username'])){
+        $username = $_POST['username'];
+    }
+    if(isset($_POST['password'])){
+        $username = $_POST['password'];
+    }
+    if(isset($_POST['confirm_password'])){
+        $username = $_POST['confirm_password'];
+    }
+
     if(isset($_GET['action'])){
         $theAction = $_GET['action'];
     }
