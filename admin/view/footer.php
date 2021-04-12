@@ -6,6 +6,7 @@
     <a href='?action=ve_makes'>View/Edit Vehicle Makes</a></br>
     <a href='?action=ve_types'>View/Edit Vehicle Types </a></br>
     <a href='?action=ve_classes'>View/Edit Vehicle Classes </a></br>
+    <a href='?action=show_register'>Register New Admin User</a></br>
 </section>
 <section name='copyright_info' class='copyright_info'>
 <hr>
