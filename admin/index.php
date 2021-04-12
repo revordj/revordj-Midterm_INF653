@@ -99,6 +99,26 @@
             include('view/classadmin.php');
             break;
 
+        case 'login':
+            include('controllers/admin.php');
+            break;
+
+        case 'show_login':
+            include('controllers/admin.php');
+            break;
+
+        case 'register':
+            include('controllers/admin.php');
+            break;
+
+        case 'show_register':
+            include('controllers/admin.php');
+            break;
+
+        case 'logout':
+            include('controllers/admin.php');
+            break;
+
         default:
             $inventory = get_inventory($sortby);
             include('view/inventory.php');
