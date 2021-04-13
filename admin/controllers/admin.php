@@ -7,5 +7,4 @@
 		echo("exists");
 	}
 
-	echo($testing[0]);
 	?>

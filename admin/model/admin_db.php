@@ -36,15 +36,14 @@ function username_exists($username){
 	$statement->bindValue(':username', $username);
 	$statement->execute();
 	$count = $statement->fetch();
-	return $count;
-	/*
-	if($count == 0){
+	
+	if($count[0] == 0){
 		return false;
 	}
 	else{
 		return true;
 	}
-	*/
+	
 }
 
 ?>
