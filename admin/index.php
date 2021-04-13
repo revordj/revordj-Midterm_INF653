@@ -19,6 +19,9 @@
     if(isset($_GET['action'])){
         $theAction = $_GET['action'];
     }
+    elseif(isset($_POST['action'])){
+        $theAction = $_POST['action'];
+    }
     else{
         $theAction = 'display_Inventory';
     }
