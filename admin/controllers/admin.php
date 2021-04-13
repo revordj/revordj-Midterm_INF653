@@ -45,7 +45,7 @@
 				$password = filter_input(INPUT_POST, 'password');
 				add_admin($username, $password);
 				$_SESSION['is_valid_admin'] = true;
-				header(index.php/?action=display_Inventory);
+				header('index.php/?action=display_Inventory');
 			}
 			break;
 		case 'show_register':
