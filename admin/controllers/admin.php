@@ -29,7 +29,7 @@
 			}
 			break;
 		case 'show_login':
-			include('view/login');
+			include('view/login.php');
 			break;
 		case 'register':
 			include('util/valid_register.php');
@@ -49,7 +49,7 @@
 			}
 			break;
 		case 'show_register':
-			include('view/register');
+			include('view/register.php');
 			break;
 		case 'logout':
 			$_SESSION = array();
