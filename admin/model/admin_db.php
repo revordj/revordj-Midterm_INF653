@@ -27,7 +27,7 @@ function is_valid_admin_login($username, $password) {
 	
 	return password_verify($password, $hash);
 }
-
+/*
 function username_exists($username){
 	global $db;
 	$query = 'SELECT COUNT(username) FROM administrators WHERE username = :username';
@@ -42,4 +42,5 @@ function username_exists($username){
 		return true;
 	}
 }
+*/
 ?>
