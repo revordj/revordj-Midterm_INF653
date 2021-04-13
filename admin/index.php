@@ -4,7 +4,7 @@
     require('model/database.php');
     require('model/vehtype.php');
     require('model/vehmake_db.php');
-    //require('model/admin_db.php');
+    require('model/admin_db.php');
     
     if(isset($_POST['username'])){
         $username = $_POST['username'];

@@ -38,7 +38,7 @@ function username_exists($username){
 	if($count == 0){
 		return false;
 	}
-	else(){
+	else{
 		return true;
 	}
 }
