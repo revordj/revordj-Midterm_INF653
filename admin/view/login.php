@@ -12,4 +12,3 @@ if(isset($login_message)){
 	
     <button class="reg-button"> Log in </button>
 </form>
-?>
