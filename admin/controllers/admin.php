@@ -1,62 +1,40 @@
-<?php
-	session_start();
-	require_once('model/database.php');
-	require_once('model/admin_db.php');
+<?php 
+    switch($action) {
+        case 'logout':
+            $_SESSION = array(); 
+            session_destroy();
+            $login_message = "You have been logged out.";
+            include('view/login.php');
+            break;
+        case 'register':
+            // Including Utility Functions for Registration
+            include('util/valid_register.php');
+            $errors = valid_registration($username, $password, $confirm_password);
 
-	$action = filter_input(INPUT_POST, 'action');
-	if($action == NULL) {
-		$action = filter_input(INPUT_GET, 'action');
-		if($action == NULL){
-			$action = 'show_admin_menu';
-		}
-	}
-
-	if(!isset($_SESSION['is_valid_admin'])){
-		$action = 'login';
-	}
-
-	switch($action){
-		case 'login':
-			$username = filter_input(INPUT_POST, 'username');
-			$password = filter_input(INPUT_POST, 'password');
-			if(is_valid_admin_login($username, $password)) {
-				$_SESSION['is_valid_admin'] = true;
-				include('view/inventory.php');
-			}
-			else{
-				$login_message = 'You must login to view this page';
-				include('view/login.php');
-			}
-			break;
-		case 'show_login':
-			include('view/login.php');
-			break;
-		case 'register':
-			include('util/valid_register.php');
-			$username = filter_input(INPUT_POST, 'username');
-			$password = filter_input(INPUT_POST, 'password');
-			$confirm_password = filter_input(INPUT_POST, 'confirm_password');
-			valid_registration($username, $password, $confirm_password);
-			if(!empty($errors)){
-				include('view/register.php');
-			}
-			else{
-				$username = filter_input(INPUT_POST, 'username');
-				$password = filter_input(INPUT_POST, 'password');
-				add_admin($username, $password);
-				$_SESSION['is_valid_admin'] = true;
-				header('index.php/?action=display_Inventory');
-			}
-			break;
-		case 'show_register':
-			include('view/register.php');
-			break;
-		case 'logout':
-			$_SESSION = array();
-			session_destroy();
-			$login_message = 'You have been logged out';
-			include('view/login.php');
-			break;
-
-	}
-	?>
+            // errors exist or success
+            if ($errors) {
+                include('view/register.php');
+            } else {
+                // store new user id and password
+                add_admin($username, $password);
+                // allow user to view admin area
+                $_SESSION['is_valid_admin'] = true;
+                header("Location: .?action=list_vehicles");
+            }
+            break;
+        case 'login':
+            if (is_valid_admin_login($username, $password)) {
+                $_SESSION['is_valid_admin'] = true;
+                header("Location: .?action=list_vehicles");
+            } else {
+                $login_message = 'Incorrect Login / Login Required.';
+                $login_message_style = 'color: red;';
+                include('view/login.php');
+            }
+            break;
+        case 'show_register':
+            include('view/register.php');
+            break;
+        case 'show_login':
+            include('view/login.php');
+    }

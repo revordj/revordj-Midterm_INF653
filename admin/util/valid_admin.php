@@ -1,9 +1,5 @@
 <?php 
-require_once('model/database.php');
-require_once('model/admin_db.php');
-
-if(!isset($_SESSION['is_valid_admin']))
-{
-	header('index.php?action=login');
-}
-?>
+    //make sure the user is logged in as a valid admin
+    if (!isset($_SESSION['is_valid_admin'])) {
+        header("Location: .?action=show_login");
+    }

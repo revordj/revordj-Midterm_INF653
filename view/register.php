@@ -1,24 +1,19 @@
-<?php include('view/header.php') ?>
-<?php 
-$testing = 'This is the test value';
-$actionlocal = $_GET['action'];
-?>
-</br>
-<?php if(isset($_SESSION['userid'])) {?>
-<section name='login_logout' id='login_logout' class='login_logout'>
-<p name='msg' id='msg'> Thank you for registering, <?php echo($_SESSION['userid']) ?>! </p>
-<p> <a href='index.php'> Click Here </a> to view our vehicle list. </a>
-</section>
-<?php } else { ?>
-Please enter your firstname:
-</br>
+<?php include('header.php'); ?>
 
-<form action="." method="get" id="list__header_select" class="list__header_select">
-	<input type="hidden" name="action" value="register"> 
-	<label for='newclass'>Name: </label>
-    <input type='text' name='firstname' class='firstname'></br>
-    <button class="reg-button"> Register </button>
+<?php if (!$firstname) { ?>
+
+<form action="." method="GET" class="register_form">
+    <input type="hidden" name="action" value="register">
+    <label for="firstname">Please enter your first name:</label>
+    <input type="text" id="firstname" name="firstname" maxlength="50" required>
+    <input type="submit" value="Register" class="button blue">
 </form>
 
+<?php } else { ?>
+    <br>
+    <h1 class="thank_you">Thank you for registering, <?= $firstname ?>!</h1>
+    <br>
+    <p><a href=".">Click here</a> to view our vehicle list.</p>
+    <br>
 <?php } ?>
-<?php include('view/footer.php') ?>
+<?php include('footer.php'); ?>

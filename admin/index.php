@@ -1,130 +1,64 @@
 <?php
-    require('model/vehclass_db.php');
-    require('model/vehinventory_db.php');
-    require('model/database.php');
-    require('model/vehtype.php');
-    require('model/vehmake_db.php');
-    require('model/admin_db.php');
+    $lifetime = 60 * 60 * 24 * 7; //one week
+    session_set_cookie_params($lifetime, '/');
+    session_start();
+
+    // Model
+    require('../model/database.php');
+    require('../model/vehicle_db.php');
+    require('../model/type_db.php');
+    require('../model/class_db.php');
+    require('../model/make_db.php');
+    require('../model/admin_db.php');
+
+    // Get required data from Model
+    $makes = get_makes();
+    $types = get_types();
+    $classes = get_classes();
+
+    // Get Parameter data sent to Controller 
+    $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
+    $password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
+    $confirm_password = trim(filter_input(INPUT_POST, 'confirm_password', FILTER_SANITIZE_STRING));
+
+    $make_id = filter_input(INPUT_POST, 'make_id', FILTER_VALIDATE_INT) ?: filter_input(INPUT_GET, 'make_id', FILTER_VALIDATE_INT);
+    $type_id = filter_input(INPUT_POST, 'type_id', FILTER_VALIDATE_INT) ?: filter_input(INPUT_GET, 'type_id', FILTER_VALIDATE_INT);
+    $class_id = filter_input(INPUT_POST, 'class_id', FILTER_VALIDATE_INT) ?: filter_input(INPUT_GET, 'class_id', FILTER_VALIDATE_INT);
     
-    if(isset($_POST['username'])){
-        $username = $_POST['username'];
-    }
-    if(isset($_POST['password'])){
-        $username = $_POST['password'];
-    }
-    if(isset($_POST['confirm_password'])){
-        $username = $_POST['confirm_password'];
-    }
+    $sort = filter_input(INPUT_GET, 'sort', FILTER_SANITIZE_STRING);
+    if (!$sort) $sort = 'price';
 
-    if(isset($_GET['action'])){
-        $theAction = $_GET['action'];
-    }
-    elseif(isset($_POST['action'])){
-        $theAction = $_POST['action'];
-    }
-    else{
-        $theAction = 'display_Inventory';
-    }
-    if(isset($_GET['makeID'])){
-        $makeID = $_GET['makeID'];
-    }
-    else{
-        $makeID=0;
-    }
-   
-    if(isset($_GET['typesID'])){
-        $typesID = $_GET['typesID'];
-    }
-    else{
-        $typesID= 0;
-    }
-    
-    if(isset($_GET['classesID'])){
-        $classesID = $_GET['classesID'];
-    }
-    else{
-        $classesID= 0;
-    }
+    $vehicle_id = filter_input(INPUT_POST, 'vehicle_id', FILTER_VALIDATE_INT);
+    $make_name = filter_input(INPUT_POST, 'make_name', FILTER_SANITIZE_STRING);
+    $type_name = filter_input(INPUT_POST, 'type_name', FILTER_SANITIZE_STRING);
+    $class_name = filter_input(INPUT_POST, 'class_name', FILTER_SANITIZE_STRING);
 
-    if(isset($_GET['rdosort'])){
-        $sortby = $_GET['rdosort'];
-    }
-    else{
-        $sortby= 'price';
-    }
+    $year = filter_input(INPUT_POST, 'year', FILTER_VALIDATE_INT);
+    $model = filter_input(INPUT_POST, 'model', FILTER_SANITIZE_STRING);
+    $price = filter_input(INPUT_POST, 'price', FILTER_VALIDATE_INT);
 
-    switch($theAction){
-        case 'display_Inventory':
-            if(!$makeID && !$typesID && !$classesID){
-                $inventory = get_inventory($sortby);
-            }
-            elseif($makeID <> 0){
-                $inventory = get_inventory_by_make($makeID, $sortby);
-            }
-            elseif($typesID <> 0){
-                $inventory = get_inventory_by_type($typesID, $sortby);
-            }
-            elseif($classesID <> 0){
-                $inventory = get_inventory_by_classes($classesID, $sortby);
-            }
-            else{
-                echo("Error in search contents, please reload the page.");
-            }
-                        
-            include('view/inventory.php');
-            break;
-        
-        case 'delete_vehicle':
-            
-            if(isset($_GET['veh_id'])){
-                delete_vehicle($_GET['veh_id']);
-            }
-            else{
-                echo("Error in deletion.");
-            }
-            header("Refresh:0; url=index.php");
+    $action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING) ?: filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING) ?: 'list_vehicles';
 
-            break;
+    // Router - take action based on $action parameter received
+    if ($action === 'login' || 
+        $action === 'show_login' || 
+        $action === 'register' ||
+        $action === 'show_register' || 
+        $action === 'logout') include('controllers/admin.php');
 
-        case 'add_vehicle':
-            include('view/addveh.php');
-            break;
+    if ($action === 'add_make' ||
+        $action === 'delete_make' ||
+        $action === 'list_makes') include('controllers/makes.php');
 
-        case 've_makes':
-            include('view/makeadmin.php');
-            break;
+    if ($action === 'add_type' ||
+        $action === 'delete_type' ||
+        $action === 'list_types') include('controllers/types.php');
 
-        case 've_types':
-            include('view/typeadmin.php');
-            break;
+    if ($action === 'add_class' ||
+        $action === 'delete_class' ||
+        $action === 'list_classes') include('controllers/classes.php');
 
-        case 've_classes':
-            include('view/classadmin.php');
-            break;
-
-        case 'login':
-            include('controllers/admin.php');
-            break;
-
-        case 'show_login':
-            include('controllers/admin.php');
-            break;
-
-        case 'register':
-            include('controllers/admin.php');
-            break;
-
-        case 'show_register':
-            include('controllers/admin.php');
-            break;
-
-        case 'logout':
-            include('controllers/admin.php');
-            break;
-
-        default:
-            $inventory = get_inventory($sortby);
-            include('view/inventory.php');
-            
-        }
-
+    if ($action === 'show_add_form' || 
+        $action === 'add_vehicle' ||
+        $action === 'delete_vehicle' ||
+        $action === 'list_vehicles') include('controllers/vehicles.php');

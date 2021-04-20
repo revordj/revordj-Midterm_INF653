@@ -2,12 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\admin",
+    "\\admin\\controllers",
     "\\admin\\css",
+    "\\admin\\model",
+    "\\admin\\util",
     "\\admin\\view",
     "\\css",
     "\\model",
     "\\view"
   ],
-  "SelectedNode": "\\admin\\css\\admin.css",
+  "SelectedNode": "\\admin\\view\\login.php",
   "PreviewInSolutionExplorer": false
 }
