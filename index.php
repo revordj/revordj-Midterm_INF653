@@ -4,11 +4,11 @@
     session_start();
 
     // Model 
-    require('model/database.php');
-    require('model/vehicle_db.php');
-    require('model/type_db.php');
-    require('model/class_db.php');
-    require('model/make_db.php');
+    require('database.php');
+    require('vehicle_db.php');
+    require('type_db.php');
+    require('class_db.php');
+    require('make_db.php');
 
     // Get required data from Model
     $types = get_types();
