@@ -7,7 +7,7 @@
             $orderby = 'V.price';
         }
         
-        $query = 'SELECT V.ID, V.year, M.Make, V.model, V.price, T.Type, C.Class 
+        $query = 'SELECT V.veh_id, V.year, M.Make, V.model, V.price, T.vType, C.Class 
         FROM vehicles V 
         LEFT JOIN makes M ON V.make_id = M.ID 
         LEFT JOIN classes C ON V.class_id = C.ID 
@@ -31,7 +31,7 @@
             $orderby = 'V.price';
         }
         
-        $query = 'SELECT V.ID, V.year, M.Make, V.model, V.price, T.Type, C.Class 
+        $query = 'SELECT V.veh_id, V.year, M.Make, V.model, V.price, T.vType, C.Class 
         FROM vehicles V 
         LEFT JOIN makes M ON V.make_id = M.ID 
         LEFT JOIN classes C ON V.class_id = C.ID 
@@ -55,7 +55,7 @@
             $orderby = 'V.price';
         }
         
-        $query = 'SELECT V.ID, V.year, M.Make, V.model, V.price, T.Type, C.Class 
+        $query = 'SELECT V.veh_id, V.year, M.Make, V.model, V.price, T.vType, C.Class 
         FROM vehicles V 
         LEFT JOIN makes M ON V.make_id = M.ID 
         LEFT JOIN classes C ON V.class_id = C.ID 
@@ -78,7 +78,7 @@
         } else {
             $orderby = 'V.price';
         }
-        $query = 'SELECT V.ID, V.year, M.Make, V.model, V.price, T.Type, C.Class 
+        $query = 'SELECT V.veh_id, V.year, M.Make, V.model, V.price, T.vType, C.Class 
             FROM vehicles V 
             LEFT JOIN makes M ON V.make_id = M.ID 
             LEFT JOIN classes C ON V.class_id = C.ID 
@@ -93,7 +93,7 @@
 
     function get_vehicle($vehicle_id) {
         global $db;
-        $query = 'SELECT * FROM vehicles WHERE ID = :vehicle_id';
+        $query = 'SELECT * FROM vehicles WHERE veh_id = :vehicle_id';
         $statement = $db->prepare($query);
         $statement->bindValue(':vehicle_id', $vehicle_id);
         $statement->execute();
@@ -104,7 +104,7 @@
 
     function delete_vehicle($vehicle_id) {
         global $db;
-        $query = 'DELETE FROM vehicles WHERE ID = :vehicle_id';
+        $query = 'DELETE FROM vehicles WHERE veh_id = :vehicle_id';
         $statement = $db->prepare($query);
         $statement->bindValue(':vehicle_id', $vehicle_id);
         $statement->execute();
