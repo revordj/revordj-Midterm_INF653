@@ -1,6 +1,7 @@
 <?php 
-    function get_vehicles_by_class($class_id, $sort) {
-        global $db;
+class VehicleDB{
+    public static function get_vehicles_by_class($class_id, $sort) {
+        $db = Database::getDB();
         if ($sort == 'year'){
             $orderby = 'V.year';
         } else {
@@ -23,8 +24,8 @@
         return $vehicles;
     }
 
-    function get_vehicles_by_type($type_id, $sort) {
-        global $db;
+    public static function get_vehicles_by_type($type_id, $sort) {
+        $db = Database::getDB();
         if ($sort == 'year'){
             $orderby = 'V.year';
         } else {
@@ -47,8 +48,8 @@
         return $vehicles;
     }
 
-    function get_vehicles_by_make($make_id, $sort) {
-        global $db;
+    public static function get_vehicles_by_make($make_id, $sort) {
+        $db = Database::getDB();
         if ($sort == 'year'){
             $orderby = 'V.year';
         } else {
@@ -71,8 +72,8 @@
         return $vehicles;
     }
 
-    function get_all_vehicles($sort) {
-        global $db;
+    public static function get_all_vehicles($sort) {
+        $db = Database::getDB();
         if ($sort == 'year'){
             $orderby = 'V.year';
         } else {
@@ -91,8 +92,8 @@
         return $vehicles;
     }
 
-    function get_vehicle($vehicle_id) {
-        global $db;
+    public static function get_vehicle($vehicle_id) {
+        $db = Database::getDB();
         $query = 'SELECT * FROM vehicles WHERE veh_id = :vehicle_id';
         $statement = $db->prepare($query);
         $statement->bindValue(':vehicle_id', $vehicle_id);
@@ -102,8 +103,8 @@
         return $vehicle;
     }
 
-    function delete_vehicle($vehicle_id) {
-        global $db;
+    public static function delete_vehicle($vehicle_id) {
+        $db = Database::getDB();
         $query = 'DELETE FROM vehicles WHERE veh_id = :vehicle_id';
         $statement = $db->prepare($query);
         $statement->bindValue(':vehicle_id', $vehicle_id);
@@ -111,8 +112,8 @@
         $statement->closeCursor();
     }
 
-    function add_vehicle($make_id, $type_id, $class_id, $year, $model, $price) {
-        global $db;
+    public static function add_vehicle($make_id, $type_id, $class_id, $year, $model, $price) {
+        $db = Database::getDB();
         $query = 'INSERT INTO vehicles (year, make_id, model, price, type_id, class_id)
               VALUES
                  (:year, :make_id, :model, :price, :type_id, :class_id)';
@@ -126,3 +127,4 @@
         $statement->execute();
         $statement->closeCursor();
     }
+}

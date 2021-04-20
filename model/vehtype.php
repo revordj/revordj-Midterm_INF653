@@ -1,7 +1,7 @@
 <?php
-
-    function get_type() {
-        global $db;
+class Vehtype{
+    public static function get_type() {
+        $db = Database::getDB();
         $query ='SELECT * from types ORDER BY ID';
         $statement = $db->prepare($query);
         $statement->execute();
@@ -10,12 +10,12 @@
         return $categories;
     }
 
-    function get_type_name($typeID){
+    public static function get_type_name($typeID){
         if (!$typeID) {
             return "All types";
         }
 
-        global $db;
+        $db = Database::getDB();
         $query = 'SELECT * FROM types WHERE ID = :typeID';
         $statement = $db->prepare($query);
         $statement->bindValue(':typeID', $typeID);
@@ -26,8 +26,8 @@
         return $type_name;
     }
 
-    function delete_type($typeID){
-        global $db;
+    public static function delete_type($typeID){
+        $db = Database::getDB();
         $query = 'DELETE FROM types WHERE ID = :typeID';
         $statement = $db->prepare($query);
         $statement-> bindValue(':typeID', $typeID);
@@ -35,11 +35,12 @@
         $statement->closeCursor();
     }
 
-    function add_type($type_name){
-        global $db;
+    public static function add_type($type_name){
+        $db = Database::getDB();
         $query = 'INSERT INTO types (vType) VALUES (:type_name)';
         $statement = $db->prepare($query);
         $statement->bindValue(':type_name', $type_name);
         $statement->execute();
         $statement->closeCursor();
     }
+}

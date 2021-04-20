@@ -1,7 +1,7 @@
 <?php
-
-    function get_make() {
-        global $db;
+class Vehmake{
+    public static function get_make() {
+        $db = Database::getDB();
         $query ='SELECT * from makes ORDER BY ID';
         $statement = $db->prepare($query);
         $statement->execute();
@@ -10,12 +10,12 @@
         return $categories;
     }
 
-    function get_make_name($makeID){
+    public static function get_make_name($makeID){
         if (!$makeID) {
             return "All makes";
         }
 
-        global $db;
+        $db = Database::getDB();
         $query = 'SELECT * FROM makes WHERE ID = :makeID';
         $statement = $db->prepare($query);
         $statement->bindValue(':makeID', $makeID);
@@ -26,8 +26,8 @@
         return $make_name;
     }
 
-    function delete_make($makeID){
-        global $db;
+    public static function delete_make($makeID){
+        $db = Database::getDB();
         $query = 'DELETE FROM makes WHERE ID = :makeID';
         $statement = $db->prepare($query);
         $statement-> bindValue(':makeID', $makeID);
@@ -35,11 +35,12 @@
         $statement->closeCursor();
     }
 
-    function add_make($make_name){
-        global $db;
+    public static function add_make($make_name){
+        $db = Database::getDB();
         $query = 'INSERT INTO makes (Make) VALUES (:make_name)';
         $statement = $db->prepare($query);
         $statement->bindValue(':make_name', $make_name);
         $statement->execute();
         $statement->closeCursor();
     }
+}

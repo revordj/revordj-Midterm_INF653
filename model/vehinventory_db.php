@@ -1,8 +1,8 @@
 <?php 
+class vehInventory{
+    public static function get_inventory($sortby){
 
-    function get_inventory($sortby){
-
-        global $db;
+        $db = Database::getDB();
 
         if($sortby == 'price'){
         $query = 'SELECT year, model, price, vtype, Make, Class FROM vehicles
@@ -32,9 +32,9 @@
         
     }
 
-    function get_inventory_by_make($passedmake, $sortby){
+    public static function get_inventory_by_make($passedmake, $sortby){
 
-        global $db;
+        $db = Database::getDB();
 
         if($sortby == 'price'){
         $query = 'SELECT year, model, price, vtype, Make, Class FROM vehicles
@@ -66,9 +66,9 @@
         return $inventory;
     }
 
-    function get_inventory_by_classes($passedclass, $sortby){
+    public static function get_inventory_by_classes($passedclass, $sortby){
 
-        global $db;
+        $db = Database::getDB();
 
         if($sortby == 'price'){
         $query = 'SELECT year, model, price, vtype, Make, Class FROM vehicles
@@ -100,9 +100,9 @@
         return $inventory;
     }
 
-    function get_inventory_by_type($passedtype, $sortby){
+    public static function get_inventory_by_type($passedtype, $sortby){
 
-        global $db;
+        $db = Database::getDB();
 
         if($sortby == 'price'){
         $query = 'SELECT year, model, price, vtype, Make, Class FROM vehicles
@@ -133,3 +133,4 @@
         $statement->closeCursor();
         return $inventory;
     }
+}

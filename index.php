@@ -11,9 +11,9 @@
     require('model/make_db.php');
 
     // Get required data from Model
-    $types = get_types();
-    $classes = get_classes();
-    $makes = get_makes();
+    $types = TypeDB::get_types();
+    $classes = ClassDB::get_classes();
+    $makes = MakeDB::get_makes();
 
     // Get Parameter data sent to Controller
     $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
@@ -26,22 +26,22 @@
     if (!$sort) $sort = 'price';
 
     // Get vehicles
-    $vehicles = get_all_vehicles($sort);
+    $vehicles = VehicleDB::get_all_vehicles($sort);
     // Filter vehicles 
     if ($make_id) {
-        $make_name = get_make_name($make_id);
+        $make_name = MakeDB::get_make_name($make_id);
         $vehicles = array_filter($vehicles, function($array) use ($make_name) {
             return $array["Make"] === $make_name;
         });
     }
     if ($type_id) {
-        $type_name = get_type_name($type_id);
+        $type_name = TypeDB::get_type_name($type_id);
         $vehicles = array_filter($vehicles, function($array) use ($type_name) {
             return $array["vType"] === $type_name;
         });
     }
     if ($class_id) {
-        $class_name = get_class_name($class_id);
+        $class_name = ClassDB::get_class_name($class_id);
         $vehicles = array_filter($vehicles, function($array) use ($class_name) {
             return $array["Class"] === $class_name;
         });

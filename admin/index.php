@@ -12,9 +12,9 @@
     require('../model/admin_db.php');
 
     // Get required data from Model
-    $makes = get_makes();
-    $types = get_types();
-    $classes = get_classes();
+    $makes = MakeDB::get_makes();
+    $types = TypeDB::get_types();
+    $classes = ClassDB::get_classes();
 
     // Get Parameter data sent to Controller 
     $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));

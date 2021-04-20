@@ -1,7 +1,7 @@
 <?php
-
-    function get_veh_class() {
-        global $db;
+class VehClassDB{
+    public static function get_veh_class() {
+        $db=Database::getDB();
         $query ='SELECT * from classes ORDER BY ID';
         $statement = $db->prepare($query);
         $statement->execute();
@@ -10,12 +10,12 @@
         return $categories;
     }
 
-    function get_class_name($classID){
+    public static function get_class_name($classID){
         if (!$classID) {
             return "All Classes";
         }
 
-        global $db;
+        $db=Database::getDB();
         $query = 'SELECT * FROM classes WHERE ID = :classID';
         $statement = $db->prepare($query);
         $statement->bindValue(':classID', $classID);
@@ -26,8 +26,8 @@
         return $class_name;
     }
 
-    function delete_class($classID){
-        global $db;
+    public static function delete_class($classID){
+        $db=Database::getDB();
         $query = 'DELETE FROM classes WHERE ID = :classID';
         $statement = $db->prepare($query);
         $statement-> bindValue(':classID', $classID);
@@ -35,11 +35,12 @@
         $statement->closeCursor();
     }
 
-    function add_class($class_name){
-        global $db;
+    public static function add_class($class_name){
+        $db=Database::getDB();
         $query = 'INSERT INTO classes (Class) VALUES (:class_name)';
         $statement = $db->prepare($query);
         $statement->bindValue(':class_name', $class_name);
         $statement->execute();
         $statement->closeCursor();
     }
+}
