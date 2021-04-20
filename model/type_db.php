@@ -17,7 +17,7 @@
         $statement->execute();
         $type = $statement->fetch();
         $statement->closeCursor();
-        $type_name = $type['Type'];
+        $type_name = $type['vType'];
         return $type_name;
     }
 
@@ -32,7 +32,7 @@
 
     function add_type($type_name) {
         global $db;
-        $query = 'INSERT INTO types (Type)
+        $query = 'INSERT INTO types (vType)
               VALUES
                  (:typeName)';
         $statement = $db->prepare($query);

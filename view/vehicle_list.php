@@ -29,7 +29,7 @@
                     <?php } else { ?>
                 <option value="<?= $type['ID']; ?>">
                     <?php } ?>                    
-                    <?= $type['Type']; ?>
+                    <?= $type['vType']; ?>
                 </option>
                 <?php endforeach; ?>
             </select>
@@ -90,8 +90,8 @@
                     <td>None</td>
                     <?php } ?>
                     <td><?= $vehicle['model']; ?></td>
-                    <?php if ($vehicle['Type']) { ?>
-                    <td><?= $vehicle['Type']; ?></td>
+                    <?php if ($vehicle['vType']) { ?>
+                    <td><?= $vehicle['vType']; ?></td>
                     <?php } else { ?>
                     <td>None</td>
                     <?php } ?>

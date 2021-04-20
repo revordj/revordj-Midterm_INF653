@@ -28,7 +28,7 @@
                     <?php } else { ?>
                 <option value="<?= $type['ID']; ?>">
                     <?php } ?>
-                    <?= $type['Type']; ?>
+                    <?= $type['vType']; ?>
                 </option>
                 <?php endforeach; ?>
             </select>
@@ -89,8 +89,8 @@
                     <td>None</td>
                     <?php } ?>
                     <td><?= $vehicle['model']; ?></td>
-                    <?php if ($vehicle['Type']) { ?>
-                    <td><?= $vehicle['Type']; ?></td>
+                    <?php if ($vehicle['vType']) { ?>
+                    <td><?= $vehicle['vType']; ?></td>
                     <?php } else { ?>
                     <td>None</td>
                     <?php } ?>
@@ -103,7 +103,7 @@
                     <td>
                         <form action="." method="post">
                             <input type="hidden" name="action" value="delete_vehicle">
-                            <input type="hidden" name="vehicle_id" value="<?= $vehicle['ID']; ?>">
+                            <input type="hidden" name="vehicle_id" value="<?= $vehicle['veh_id']; ?>">
                             <input type="submit" value="Remove" class="button red button-slim">
                         </form>
                     </td>

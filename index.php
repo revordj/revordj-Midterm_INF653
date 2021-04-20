@@ -37,7 +37,7 @@
     if ($type_id) {
         $type_name = get_type_name($type_id);
         $vehicles = array_filter($vehicles, function($array) use ($type_name) {
-            return $array["Type"] === $type_name;
+            return $array["vType"] === $type_name;
         });
     }
     if ($class_id) {
